@@ -5,21 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
-    <style href='style.css'></style>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel='stylesheet' href='style.css'></link>
 </head>
 <body> 
+    <H3>Tic-Tac-Toe</H3>
+    <H3>Start</H3>
     <div class="board" id="board">
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
-		<div class="cell" data-cell></div>
+		<div class="cell" co board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
+		<div class="cell" board-cell></div>
 	</div>
-    
+    <div class="winning-message" id="winningMessage">
+		<div id="winningMessageText"></div>
+		<button id="restartButton">Restart</button>
+	</div>
 </body>
 <script src="app.js"></script>
 </html>
