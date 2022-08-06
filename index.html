@@ -9,10 +9,25 @@
     <link rel='stylesheet' href='style.css'></link>
 </head>
 <body> 
-    <H3>Tic-Tac-Toe</H3>
-    <H3>Start</H3>
+	<div id='title'class="container">
+		<H3>Tic-Tac-Toe</H3>
+		
+		<!-- <h4 id='player1'>Player 1</h4> -->
+		<div class="p1">
+			<label value=name id='p1'>Player 1:<msg id='message' value='p1'> name</msg></label>
+			<input id="p1" type="text" value='' />
+		</div>
+		<!-- <h4 id='player2'>Player 2</h4> -->
+		<div class="p2">
+			<label id='p2' value='name'>Player 2:<msg id='message' value='p2'> name</msg></label>
+			<input id="p2" type="text" value='' />
+		</div>
+			
+	</form>
+	</div>
+    <datalist></datalist>
     <div class="board" id="board">
-		<div class="cell" co board-cell></div>
+		<div class="cell" board-cell></div>
 		<div class="cell" board-cell></div>
 		<div class="cell" board-cell></div>
 		<div class="cell" board-cell></div>
@@ -22,8 +37,8 @@
 		<div class="cell" board-cell></div>
 		<div class="cell" board-cell></div>
 	</div>
-    <div class="winning-message" id="winningMessage">
-		<div id="winningMessageText"></div>
+    <div class="winMessage" id="winMessage">
+		<div id="winText"></div>
 		<button id="restartButton">Restart</button>
 	</div>
 </body>
