@@ -83,6 +83,14 @@ function startingTurn(){
 //     }
 //     arg.value = gameState.players[0]
 // }
+function checkWin() {
+    let winner = null;
+    winningCombos.forEach(function(combo, index) {
+        
+        ;
+};
+
+
 function renderState() {
     
     fullBoard.forEach((element, idx) => {
@@ -117,6 +125,7 @@ function onBoardClick() {
     }) 
     addText(event.target, currentPlayer)
     fullBoard[cellIndex] = currentPlayer ? 'x' : 'o'
+    checkWin()
     changeturn()
     // currentPlayer ? `${players[0]}` : players[1]
     
@@ -127,6 +136,15 @@ function onBoardClick() {
     //     currentPlayer = true
     // }
 }
+function endGame(draw) {
+  if (draw) {
+    winMessage.innerText = 'Draw!'
+  } else {
+    winText.innerText = `${currentPlayer ? "X" : "O"} Wins!`
+  }
+}
+
+
 
   // update state, maybe with another dozen or so helper functions...
 
