@@ -46,6 +46,7 @@ const winText = document.querySelector('[winText]')
 
 const restartbtn = document.getElementById('restartButton')
 restartbtn.addEventListener("click", buildInitialState)
+const turnmessage = document.getElementById('gameMessage')
 // state
 
 let fullBoard = gameState.board.flat(9)
@@ -53,40 +54,61 @@ console.log(boardArray, board, gameState)
 console.log(fullBoard)
 
 
-function startingTurn(){
+function startingTurn(){ //Randomizes the starting player
             turn.count = Math.round(Math.random());
             if(turn.count === 1){
-                gameState.currentPlayer = false
+                currentPlayer = !currentPlayer
             }
-            return
+            return currentPlayer
         }
 
 function buildInitialState() {
-    fullBoard.forEach( (e) =>{
-            e = null
+    fullBoard.fill(null)
+    winMessage.innerText = ''
+    win = false
+    startingTurn()
+    fullBoard.forEach( (element, idx) =>{
+        turnmessage.innerText= currentPlayer ? (`'It is ${player1}'s Turn!`) : `'It is ${player2}'s turn'`
+            boardArray[idx].innerText = element 
+            console.log(boardArray)
         })
+        
     boardArray.forEach(cell => {
     cell.removeEventListener('click',onBoardClick)
     cell.addEventListener('click', onBoardClick, {once:true})
 })
-        startingTurn()
-        renderState()
         
+        renderState()
+}     
     
-    
-
-    }
     let player1 = 'x'
     let player2 = 'o'
+
+
+
+
 function isDraw() {
-  return [...fullBoard].every(cell => {
-    return cell.contains('x') || cell.contains('o')
+  return [...boardArray].every(cell => {
+    if(cell){
+    return cell.innerText === ('x') || cell.innerText === ('o') ;
+    }
   })
 }
 
+function winCheck(){
+    // let row1= boardArray.slice(0,2)
+    // let row2= boardArray.slice(3,5)
+    // let row3= boardArray.slice(6,8)
+    winningCombinations.forEach(function(row) {
+      let a = row[0], b = row[1], c = row[2];
+      console.log(a,b,c, boardArray[a].innerHTML,boardArray[b].innerHTML,boardArray[c].innerHTML)
 
+      if(boardArray[a].innerText!='' && boardArray[a].innerText==boardArray[b].innerText && boardArray[b].innerText==boardArray[c].innerText){
+        return win=true
+         }
+    });
+}
 
-const turnmessage = document.getElementById('gameMessage')
 
 function renderState() {
     
@@ -94,8 +116,9 @@ function renderState() {
         
         turnmessage.innerText= currentPlayer ? (`'It is ${player1}'s Turn!`) : `'It is ${player2}'s turn'`
         if(element){
-            boardArray[idx].innerText = element }})
-}
+            boardArray[idx].innerText = element 
+}})
+}           
 renderState()
 // maybe a dozen or so helper functions for tiny pieces of the interface
 
@@ -103,28 +126,34 @@ function addText(cell, currentPlayer){
     cell.innerText = currentPlayer ? 'x' : 'o'
 }
 
-function winCheck(){
-    if (fullBoard.length = 9)
-    
-}
+// function winCheck(){
+//     if (fullBoard.length = 9)
+
 function changeturn(){
-        
         currentPlayer = !currentPlayer
-        // msg.innerText=(`It's ${current}'s turn`)
     }
-// listeners
 function onBoardClick() {
     console.log('clicked', event.target)
     let cellIndex = boardArray.findIndex((cell)=>{
-    console.log(event.target)
     return cell === event.target
     }) 
-
-
     addText(event.target, currentPlayer)
     fullBoard[cellIndex] = currentPlayer ? 'x' : 'o'
-    winCheck()
+    // winCheck()
     changeturn()
+    let draw = isDraw()
+    let winner = winCheck()
+    if(draw){
+        winMessage.innerText ='It is a Tie!'
+    }
+    if(win){
+        fullBoard.forEach((cell=>{
+            cell.removeEventListener('click', onBoardClick)
+        }))
+        winMessage.innerText=`${current} Won!`
+    }
+
+    console.log(winner)
     renderState()
 
    
