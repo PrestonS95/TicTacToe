@@ -147,7 +147,7 @@ function onBoardClick() {
         winMessage.innerText ='It is a Tie!'
     }
     if(win){
-        fullBoard.forEach((cell=>{
+        boardArray.forEach((cell=>{
             cell.removeEventListener('click', onBoardClick)
         }))
         winMessage.innerText=`${current} Won!`
