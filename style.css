@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;
-  padding: 0;
-  margin: 0;
+  padding: 2px;
+  margin-top: 4px;
   border: 0;
   /* background-color: rgb(33, 166, 228); */
 }

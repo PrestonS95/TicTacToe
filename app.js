@@ -28,7 +28,7 @@ const winningCombinations = [
   [2, 4, 6]
 ]
 let win 
-let current = currentPlayer ? 'X' : 'O'
+
 const title = document.getElementById('title');
 const p1 = document.getElementsByName('p1');
 const p2 = document.getElementsByName('p2');
@@ -81,8 +81,8 @@ function buildInitialState() {
         renderState()
 }     
     
-    let player1 = 'x'
-    let player2 = 'o'
+    let player1 = 'X'
+    let player2 = 'O'
 
 
 
@@ -128,7 +128,7 @@ function addText(cell, currentPlayer){
 
 // function winCheck(){
 //     if (fullBoard.length = 9)
-
+let current = currentPlayer ? 'X' : 'O'
 function changeturn(){
         currentPlayer = !currentPlayer
     }
@@ -140,7 +140,8 @@ function onBoardClick() {
     addText(event.target, currentPlayer)
     fullBoard[cellIndex] = currentPlayer ? 'x' : 'o'
     // winCheck()
-    changeturn()
+    let current = currentPlayer ? 'X' : 'O'
+    
     let draw = isDraw()
     let winner = winCheck()
     if(draw){
@@ -150,9 +151,10 @@ function onBoardClick() {
         boardArray.forEach((cell=>{
             cell.removeEventListener('click', onBoardClick)
         }))
-        winMessage.innerText=`${current} Won!`
+        winMessage.innerText= currentPlayer ? ` ${player1} Won!`: 
+        `${player2} Won!`
     }
-
+    changeturn()
     console.log(winner)
     renderState()
 
